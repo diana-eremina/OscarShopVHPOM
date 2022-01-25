@@ -94,13 +94,10 @@ public class BasketTests extends TestBase{
         homePage.selectMenu("Books"); // переход в меню books
 
         String nameInCataloge = catalogePage.getNameByIndex(1); // заполнить название книги
-        System.out.println(nameInCataloge);
 
         String priceInCataloge = catalogePage.getPriceByIndex(1); // запомнить цену книги
-        System.out.println(priceInCataloge);
 
         catalogePage.addToBasketByIndex(1);
-
         homePage.viewBasket(); // перейти в корзину
 
         // проверить, что верная цена в корзине
@@ -110,7 +107,28 @@ public class BasketTests extends TestBase{
         // проверить, что верное название в корзине
         String nameOnBasketPage = basketPage.getNameInBasket();
         Assert.assertEquals(nameInCataloge, nameOnBasketPage);
+    }
 
+    @Test
+    public void addingToBasketFromProductPage() {
+        homePage.selectMenu("Books"); // переход в меню books
+
+        catalogePage.selectBookByIndex(0); //клик по первой же книжке
+        productPage.productInformationIsDisplayed(); // проверка что попали на стр продукта
+
+        String nameOnProductPage = productPage.getName(); // запомнить имя книги
+        String priceOnProductPage = productPage.getPrice(); // запомнить цену книги
+
+        productPage.addToBasket(); // добавить в корзину
+        homePage.viewBasket(); // перейти в корзину
+
+        // проверить, что верное название книги
+        String nameOnBasketPage = basketPage.getNameInBasket();
+        Assert.assertEquals(nameOnProductPage, nameOnBasketPage);
+
+        // проверить, что верная цена в корзине
+        String priceInBasket = basketPage.getPriceInBasket();
+        Assert.assertEquals(priceOnProductPage, priceInBasket);
     }
 
 
