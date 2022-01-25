@@ -76,17 +76,31 @@ public class BasketTests extends TestBase{
 
         productPage.productInformationIsDisplayed(); // проверка что попали на стр продукта
 
-        // String name = productPage.getName(); // запоминать имя книги не надо, тк все равно не сможем его использовать
-        // String price = productPage.getPrice(); // запоминать цену книги, тк все равно не сможем его использовать
+        String name = productPage.getName(); // запомнить имя книги
+        String priceOnProductPage = productPage.getPrice(); // запоминать цену книги, тк все равно не сможем его использовать
         // System.out.println("First price: " + price); // делать тоже не надо, тк сравнение не срабатывает
 
         productPage.addToBasket(); // добавить в корзину
 
-        productPage.addedMessageIsDisplayed(); // первое сообщение показывается
+        // первое сообщение показывается
+        String expectedAddedMessage = productPage.addedToYourBasketMessage();
+        Assert.assertEquals(name + " has been added to your basket.", expectedAddedMessage);
 
-        productPage.DeferredBenefitMessageIsDisplayed(); // второе сообщение показывается
+        // второе сообщение показывается
+        String offerName = productPage.getOfferName(); // получить название оффера в сообщении
+        String expectedOfferMessage = new String();
+        expectedOfferMessage = "Your basket now qualifies for the Deferred benefit offer offer.";
+        Assert.assertEquals("Your basket now qualifies for the " + offerName + " offer.", expectedOfferMessage);
 
-        productPage.BasketTotalMessageIsDisplayed(); // третье сообщение показывается
+        // третье сообщение показывается
+        productPage.BasketTotalMessageIsDisplayed();
+        String expectedBasketTotalMessage = new String();
+        expectedBasketTotalMessage = "Your basket total is now " + priceOnProductPage;
+
+        String priceInMessage = new String();
+        priceInMessage = productPage.getPriceInMessage();
+
+        Assert.assertEquals("Your basket total is now " + priceInMessage, expectedBasketTotalMessage);
     }
 
     @Test
