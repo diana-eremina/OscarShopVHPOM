@@ -9,10 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.BasketPage;
-import pages.CatalogePage;
-import pages.HomePage;
-import pages.ProductPage;
+import pages.*;
 
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -23,6 +20,7 @@ public class BasketTests extends TestBase{
     BasketPage basketPage;
     CatalogePage catalogePage;
     ProductPage productPage;
+    HelperPage helperPage;
 
     @BeforeMethod // подключаем методы со страниц Главная, Корзина
     public void initPage(){
@@ -30,6 +28,7 @@ public class BasketTests extends TestBase{
         basketPage = new BasketPage();
         catalogePage = new CatalogePage();
         productPage = new ProductPage();
+        helperPage = new HelperPage();
     }
 
    @Test
@@ -45,7 +44,10 @@ public class BasketTests extends TestBase{
       String nameOnProductPage = productPage.getName(); // запомнить имя книги
 
       productPage.addToBasket(); // добавить в корзину
+
       homePage.viewBasket(); // перейти в корзину
+
+      helperPage.takeScreenShot();
 
       // проверить, что верное название книги в корзине в первом товаре
       String nameOnBasketPage = basketPage.getNameInBasket();
@@ -67,6 +69,7 @@ public class BasketTests extends TestBase{
         // проверить, что верная цена в корзине
         String priceInBasket = basketPage.getPriceInBasket();
         Assert.assertEquals(priceOnProductPage, priceInBasket);
+
     }
 
     @Test
