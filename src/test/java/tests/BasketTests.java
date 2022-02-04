@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Feature;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,6 +24,7 @@ public class BasketTests extends TestBase{
     HelperPage helperPage;
 
     @BeforeMethod // подключаем методы со страниц Главная, Корзина
+    @Feature("Basket") // чтобы в allure-отчете была группировка
     public void initPage(){
         homePage = new HomePage();
         basketPage = new BasketPage();

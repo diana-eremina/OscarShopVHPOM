@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -10,16 +11,17 @@ import tests.util.DataProviders;
 public class LoginTests extends TestBase{
     HomePage homePage;
     LoginPage loginPage;
-//    String email = "diana@gmail.com";
-//    String password = " mvn clean -Dtest=LoginTests#loginPositiveTest -Demail=olga11@yandex.ru -Dpassword=Qwe123123 test";
+    String email = "olga11@yandex.ru";
+    String password = "Qwe123123";
 
     @BeforeMethod
+    @Feature("Login")
     public void initPage(){
         homePage = new HomePage(); // инициализируются настройки для страницы HomePage
         loginPage = new LoginPage(); // для LoginPage
     }
 
-    /* данные берутся отсюда же, из этого файла в начале
+    // данные берутся отсюда же, из этого файла в начале
    @Test (priority = 1, groups = "positive") // одна группа в кавычках
     public void loginPositiveTest(){
        homePage.clickOnLoginLink(); // вызываем метод, к-рый описан на стр homePage
@@ -30,8 +32,9 @@ public class LoginTests extends TestBase{
        homePage.isItHomePage();// вызываем метод, к-рый описан на стр HomePage
        homePage.messageIsDisplayed("Welcome back");// вызываем метод, к-рый описан на стр HomePage
    }
-     */
 
+
+/*
 // данные возьмутся из консоли
     @Test (priority = 1, groups = "positive")
     @Parameters({"email", "password"})
@@ -44,6 +47,7 @@ public class LoginTests extends TestBase{
         homePage.isItHomePage();
         homePage.messageIsDisplayed("Welcome back");
     }
+*/
 
    /* данные из файла testng
     @Test (priority = 2, groups = {"negative", "ccnc"}, enabled = true)

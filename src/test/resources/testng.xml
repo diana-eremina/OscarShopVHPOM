@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Tests" verbose="5"> // verbose - подробность лога в консоли
+<suite name="Tests" verbose="5" thread-count="1" parallel="classes">
     <test name="Test1">
-        <parameter name="emailInvalid"  value="wrong@gmail.com" />
-        <parameter name="passwordInvalid"  value="wrong" />
-        <classes>
-            <class name="tests.LoginTests"> //в каком классе (там тесты прописаны сами)
-                                             // будут использоваться эти параметры
-                <methods>
-                    <include name = "loginNegativeTest"/> //имя самого теста. Тут указаны параметры для негативного
-                                             //теста, потому на него и ссылаемся
-                                            // если надо, можно привязывать не через название метода (теста),
-                                            // а через название группы - см урок от 12 янв, как это сделать
-                </methods>
-            </class>class>
-        </classes>
+        <packages>
+            <package name="tests.*"></package>
+        </packages>
     </test>
 </suite>

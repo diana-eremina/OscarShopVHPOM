@@ -18,7 +18,7 @@ public class LoginTests_console extends TestBase{
     }
 
 // данные возьмутся из консоли
-    @Test (priority = 1, groups = "positive")
+    @Test (priority = 1, groups = "positive", enabled = false)
     @Parameters({"email", "password"})
     public void loginPositiveTest(String email, String password){
         homePage.clickOnLoginLink();
