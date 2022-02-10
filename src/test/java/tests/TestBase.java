@@ -32,7 +32,7 @@ public class TestBase {
        Configuration.browserSize = "1920x1080";
 
        // чтобы тесты проходили без отрисовки (браузер не будет показываться):
-       Configuration.headless = true;
+       // Configuration.headless = true;
 
 
         open("http://selenium1py.pythonanywhere.com/en-gb/");

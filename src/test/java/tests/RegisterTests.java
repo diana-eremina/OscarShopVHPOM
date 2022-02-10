@@ -11,7 +11,6 @@ public class RegisterTests extends TestBase{
     HomePage homePage;
     RegisterPage registerPage;
     LoginPage loginPage;
-    String email = "diana-5@gmail.com";
     String password = "FmaNgaFmaNga";
     String emailInvalid = "diana@gmail.com"; // already existed
 
@@ -27,12 +26,16 @@ public class RegisterTests extends TestBase{
     public void registerPositiveTest() throws InterruptedException {
         homePage.clickOnLoginLink(); // вызываем метод, к-рый описан на стр homePage
         registerPage.registerFormIsVisible(); // вызываем метод, к-рый описан на стр registerPage
-        registerPage.fillEmail(email); // тоже
-        registerPage.fillPassword1(password);//  тоже
-        registerPage.fillPassword2(password);//  тоже
-        registerPage.clickRegister(); // тоже
+
+        String dateForEmail = registerPage.getDateForEmail();//получаем дату для уникальности имейла
+        String email = "diana" + dateForEmail + "@gmail.com";
+        registerPage.fillEmail(email);
+
+        registerPage.fillPassword1(password);
+        registerPage.fillPassword2(password);
+        registerPage.clickRegister();
         homePage.isItHomePage();// вызываем метод, к-рый описан на стр HomePage
-        homePage.messageIsDisplayed("Thanks for registering!");// тоже
+        homePage.messageIsDisplayed("Thanks for registering!");
         Thread.sleep(1000); // если удалим ожидание - то убрать из заголовка "throws InterruptedException"
     }
 

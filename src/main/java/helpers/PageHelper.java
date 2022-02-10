@@ -23,4 +23,9 @@ public class PageHelper {
         byte[] decoded = Base64.getDecoder().decode(screenshotAsBase64);
         return decoded;
     }
+
+
+
+
+
 }

@@ -1,10 +1,11 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Selectors.byText;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class RegisterPage {
@@ -27,6 +28,13 @@ public class RegisterPage {
 
     public void clickRegister() {
         $("[name=\"registration_submit\"]").click();
+    }
+
+    public String getDateForEmail(){
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        Date date = new Date(System.currentTimeMillis());
+        String dateForEmail = formatter.format(date);
+        return dateForEmail;
     }
 
 }
